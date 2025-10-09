@@ -27,8 +27,12 @@ class ProcurementService(
         return goodsService.receiveGoods(grn)
     }
 
-    fun approveInvoice(invoice: Invoice): Invoice {
-        return invoiceService.approveInvoice(invoice)
+    fun approveInvoice(invoice: Invoice): Invoice? {
+        return invoiceService.approveInvoice(invoice.id)
+    }
+
+    fun createInvoice(invoice: Invoice): Invoice {
+        return invoiceService.createInvoice(invoice)
     }
 
     fun makePayment(payment: Payment): Payment {

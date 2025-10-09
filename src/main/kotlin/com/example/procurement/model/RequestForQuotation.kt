@@ -8,5 +8,6 @@ data class RequestForQuotation(
     val vendor: Vendor,
     val requestedItems: List<Item>,
     var createdBy: User,
-    var status: String = "Sent"
+    var status: String = "Sent",
+    val remarks: String? = null
 )

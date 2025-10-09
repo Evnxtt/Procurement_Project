@@ -35,6 +35,8 @@ dependencies {
 
     // ===== Logging =====
     implementation("ch.qos.logback:logback-classic:1.4.14")
+    implementation("io.netty:netty-all:4.1.112.Final")
+
 
     // ===== Testing =====
     testImplementation(kotlin("test"))
