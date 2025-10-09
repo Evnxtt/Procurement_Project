@@ -11,7 +11,8 @@ data class Invoice(
     val totalAmount: Double,
     val createdBy: User,
     var approvedBy: User? = null,
-    var status: String = "Unverified"
+    var status: String = "Unverified",
+    val remarks: String? = null
 ) : IApprovable {
 
     override fun approve(): Boolean {

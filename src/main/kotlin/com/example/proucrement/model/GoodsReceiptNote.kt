@@ -5,16 +5,23 @@ package com.example.procurement.model
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Contextual
 import kotlinx.serialization.UseSerializers
+import kotlinx.serialization.descriptors.PrimitiveKind
+import kotlinx.serialization.descriptors.PrimitiveSerialDescriptor
+import kotlinx.serialization.encoding.Decoder
+import kotlinx.serialization.encoding.Encoder
 import java.time.LocalDate
+import com.example.procurement.model.interfaces.IReceivable
+
+
 
 object LocalDateSerializer : kotlinx.serialization.KSerializer<LocalDate> {
-    override val descriptor = kotlinx.serialization.descriptors.PrimitiveSerialDescriptor("LocalDate", kotlinx.serialization.encoding.PrimitiveKind.STRING)
+    override val descriptor = PrimitiveSerialDescriptor("LocalDate", PrimitiveKind.STRING)
 
-    override fun serialize(encoder: kotlinx.serialization.encoding.Encoder, value: LocalDate) {
+    override fun serialize(encoder: Encoder, value: LocalDate) {
         encoder.encodeString(value.toString())
     }
 
-    override fun deserialize(decoder: kotlinx.serialization.encoding.Decoder): LocalDate {
+    override fun deserialize(decoder: Decoder): LocalDate {
         return LocalDate.parse(decoder.decodeString())
     }
 }

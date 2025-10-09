@@ -8,5 +8,6 @@ data class PurchaseRequisition(
     val title: String,
     val requester: User,
     val items: List<Item>,
-    var status: String = "Pending"
+    var status: String = "Pending",
+    val remarks: String? = null
 )

@@ -10,7 +10,8 @@ data class PurchaseOrder(
     val items: List<Item>,
     val createdBy: User,
     var approvedBy: User? = null,
-    var status: String = "Draft"
+    var status: String = "Draft",
+    val remarks: String? = null
 ) : IApprovable {
 
     override fun approve(): Boolean {
