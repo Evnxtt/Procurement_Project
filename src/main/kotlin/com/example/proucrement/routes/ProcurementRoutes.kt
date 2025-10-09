@@ -1,9 +1,9 @@
-package com.example.proucrement.routes
+package com.example.procurement.routes
 
 import io.ktor.server.application.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
-import com.example.proucrement.service.ProcurementService
+import com.example.procurement.service.ProcurementService
 
 fun Application.procurementRoutes() {
     routing {

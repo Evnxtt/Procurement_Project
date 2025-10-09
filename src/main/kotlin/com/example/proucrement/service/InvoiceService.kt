@@ -11,6 +11,12 @@ class InvoiceService {
 
     fun getAllInvoices(): List<Invoice> = repo.getAll()
 
+    fun approveInvoice(id: Int): Invoice? {
+        val invoice = repo.findById(id) ?: return null
+        val updated = invoice.copy(status = "APPROVED")
+        return repo.update(updated)
+    }
+
     fun rejectInvoice(id: Int, reason: String): Invoice? {
         val invoice = repo.findById(id) ?: return null
         val updated = invoice.copy(status = "REJECTED", remarks = reason)
