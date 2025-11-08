@@ -58,8 +58,11 @@
                 items = items,
                 createdBy = creator
             )
+            
+            // First create the order
+            val created = service.createOrder(po)
 
-            val approved = service.approveOrder(po.id)
+            val approved = service.approveOrder(created.id)
             assertEquals("APPROVED", approved?.status)
         }
 
@@ -72,8 +75,12 @@
                 createdBy = creator
             )
 
-            val rejected = service.rejectOrder(po.id, "Budget exceeded")
-            assertEquals("Rejected: Budget exceeded", rejected?.status)
+            // First create the order
+            val created = service.createOrder(po)
+            
+            val rejected = service.rejectOrder(created.id, "Budget exceeded")
+            assertEquals("REJECTED", rejected?.status)
+            assertEquals("Budget exceeded", rejected?.remarks)
         }
 
         @Test

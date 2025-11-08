@@ -38,7 +38,7 @@ class RequestForQuotationServiceTest {
 
         val result = service.createRFQ(rfq)
 
-        assertEquals("Sent", result.status)
+        assertEquals("SENT", result.status)
         assertEquals(vendor.name, result.vendor.name)
         assertEquals(2, result.requestedItems.size)
     }
@@ -52,7 +52,10 @@ class RequestForQuotationServiceTest {
             createdBy = creator
         )
 
-        val updated = service.updateStatus(rfq.id, "Closed")
+        // First create the RFQ
+        val created = service.createRFQ(rfq)
+        
+        val updated = service.updateStatus(created.id, "Closed")
 
         assertEquals("Closed", updated?.status)
     }

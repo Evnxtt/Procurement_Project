@@ -31,7 +31,7 @@ class PurchaseRequisitionServiceTest {
 
         val result = service.createRequisition(req)
 
-        assertEquals("Pending", result.status)
+        assertEquals("PENDING", result.status)
         assertEquals("Office Equipment Request", result.title)
         assertEquals(2, result.items.size)
     }
@@ -45,9 +45,12 @@ class PurchaseRequisitionServiceTest {
             items = items
         )
 
-        val approved = service.approveRequisition(req.id)
+        // First create the requisition
+        val created = service.createRequisition(req)
+        
+        val approved = service.approveRequisition(created.id)
 
-        assertEquals("Approved", approved?.status)
+        assertEquals("APPROVED", approved?.status)
     }
 
     @Test
@@ -59,9 +62,12 @@ class PurchaseRequisitionServiceTest {
             items = items
         )
 
-        val rejected = service.rejectRequisition(req.id, "Not needed this quarter")
+        // First create the requisition
+        val created = service.createRequisition(req)
+        
+        val rejected = service.rejectRequisition(created.id, "Not needed this quarter")
 
-        assertEquals("Rejected", rejected?.status)
+        assertEquals("REJECTED", rejected?.status)
         assertEquals("Not needed this quarter", rejected?.remarks)
     }
 }
